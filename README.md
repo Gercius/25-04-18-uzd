@@ -1,3 +1,10 @@
+# Helpdesk API servisas
+
+## REST
+REST [folder](./REST) is for testing routes using VS Code REST Client [extension](https://marketplace.visualstudio.com/items/?itemName=humao.rest-client)
+
+No sensitive info should be left inside rest files when pushing to git, either name files like this **local.auth.rest** or add them to the [.gitignore](./.gitignore)
+
 ## Prisma
 [Setup](https://www.prisma.io/docs/orm/prisma-client/setup-and-configuration/introduction)
 
