@@ -1,4 +1,5 @@
 import { body } from "express-validator";
+import { validationResult } from "express-validator";
 
 export const validate = (validator) => [
     ...validator,
@@ -28,7 +29,7 @@ const loginValidator = [
         .notEmpty().withMessage("Slaptažodis privalomas")
 ];
 
-export const validator = {
+export const authValidators = {
     registerValidator,
-    loginValidator
-}
+    loginValidator,
+};

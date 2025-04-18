@@ -1,2 +1,5 @@
 node_modules
 .env
+
+# ignore REST testing files ex. local.auth.rest with sensitive info like auth details, bearer tokens etc.
+REST/local*
