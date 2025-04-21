@@ -32,6 +32,8 @@ model Ticket {
   updatedAt     DateTime    @default(now())
   user          User        @relation(fields: [authorId], references: [id])
   authorId      Int
+
+   @@map("tickets")
 }
 
 enum Status {
@@ -47,5 +49,7 @@ model Reply {
   updatedAt   DateTime    @default(now())
   user        User        @relation(fields: [authorId], references: [id])
   authorId    Int
+
+   @@map("replies")
 }
 
