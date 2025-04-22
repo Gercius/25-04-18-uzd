@@ -16,6 +16,15 @@ Authorization: Bearer <token>
     "description": "test description"
 }
 
+### Reply ticket
+POST http://localhost:3000/api/v1/tickets/1/reply
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+    "message": "test message"
+}
+
 ### Update ticket
 PUT http://localhost:3000/api/v1/tickets/1
 Content-Type: application/json
@@ -25,6 +34,11 @@ Authorization: Bearer <token>
     "title": "test title updated",
     "description": "test description"
 }
+
+### Close ticket
+PATCH  http://localhost:3000/api/v1/tickets/1/close
+Content-Type: application/json
+Authorization: Bearer <token>
 
 ### Delete ticket
 DELETE  http://localhost:3000/api/v1/tickets/2

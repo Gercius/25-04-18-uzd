@@ -101,4 +101,65 @@ const deleteTicket = async (req, res) => {
     }
 };
 
-export const ticketController = { getAllTickets, getSingleTicket, createTicket, updateTicket, deleteTicket };
+const replyTicket = async (req, res) => {
+    const { id } = req.params;
+    const { message } = req.body;
+
+    try {
+        const ticket = await prisma.ticket.findUnique({ where: { id: parseInt(id) } });
+
+        if (!ticket) return res.status(404).json({ message: "Užklausa nerasta" });
+        if (ticket.status === "CLOSED") return res.status(403).json({ message: "Užklausa uždaryta" });
+
+        const reply = await prisma.reply.create({
+            data: {
+                message,
+                authorId: req.user.id,
+                ticketId: ticket.id,
+            },
+        });
+
+        await prisma.ticket.update({
+            where: { id: ticket.id },
+            data: {
+                status: "ANSWERED",
+            },
+        });
+
+        res.status(201).json(reply);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+const closeTicket = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const ticket = await prisma.ticket.findUnique({ where: { id: parseInt(id) } });
+        if (!ticket || ticket.authorId !== req.user.id) {
+            return res.status(403).json({ message: "Užklausa nerasta arba nesate šios užklausos savininkas" });
+        }
+
+        await prisma.ticket.update({
+            where: { id: ticket.id },
+            data: {
+                status: "CLOSED",
+            },
+        });
+
+        res.status(201).json({ message: "Užbaigta" });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+export const ticketController = {
+    getAllTickets,
+    getSingleTicket,
+    createTicket,
+    updateTicket,
+    deleteTicket,
+    replyTicket,
+    closeTicket,
+};

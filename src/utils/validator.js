@@ -48,6 +48,16 @@ export const ticketValidator = [
         .withMessage("Statusas turi būti 'NEW', 'ANSWERED' arba 'CLOSED'"),
 ];
 
+export const replyValidator = [
+    body("message")
+        .notEmpty()
+        .withMessage("Žinutė privaloma")
+        .isLength({ min: 3 })
+        .withMessage("Žinutė turi būti bent 3 simbolių ilgio")
+        .isLength({ max: 1000 })
+        .withMessage("Žinutė turi būti ne ilgesnė nei 1000 simbolių"),
+];
+
 export const authValidators = {
     registerValidator,
     loginValidator,
