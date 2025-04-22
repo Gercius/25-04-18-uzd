@@ -1,0 +1,31 @@
+### Get all tickets
+GET http://localhost:3000/api/v1/tickets
+Authorization: Bearer <token>
+
+### Get single ticket
+GET http://localhost:3000/api/v1/tickets/1
+Authorization: Bearer <token>
+
+### Create ticket
+POST http://localhost:3000/api/v1/tickets
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+    "title": "test title",
+    "description": "test description"
+}
+
+### Update ticket
+PUT http://localhost:3000/api/v1/tickets/1
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+    "title": "test title updated",
+    "description": "test description"
+}
+
+### Delete ticket
+DELETE  http://localhost:3000/api/v1/tickets/2
+Authorization: Bearer <token>
