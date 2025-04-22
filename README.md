@@ -1,5 +1,30 @@
 # Helpdesk API servisas
 
+## Steps to setup and run app
+```
+git clone https://github.com/Gercius/25-04-18-uzd.git
+cd .\25-04-18-uzd\
+```
+
+Open code editor and setup .env, example config shown in [example.env](./example.env) file
+
+Create a new database and change provider in [schema.prisma](./prisma/schema.prisma) file accordingly if needed (PostgreSQL is default) [ref](https://www.prisma.io/docs/orm/prisma-schema/overview/data-sources)
+```
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+
+Then run:
+```
+npm install
+npx prisma migrate dev --name init
+npm run dev
+```
+
+API documentation endpoint - `/api/doc` ex. `http://localhost:3000/api/doc/`
+
 ## REST
 REST [folder](./REST) is for testing routes using VS Code REST Client [extension](https://marketplace.visualstudio.com/items/?itemName=humao.rest-client)
 
