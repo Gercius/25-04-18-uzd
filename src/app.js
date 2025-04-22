@@ -2,6 +2,7 @@ import express from "express";
 
 import authRoutes from "./routes/authRoutes.js";
 import ticketRoutes from "./routes/ticketRoutes.js";
+import { swaggerDocs } from "./utils/swagger.js";
 
 export const app = express();
 
@@ -13,3 +14,5 @@ app.use("/api/v1/tickets", ticketRoutes);
 app.get("/", (req, res) => {
     res.send("Helpdesk API servisas");
 });
+
+swaggerDocs(app);
