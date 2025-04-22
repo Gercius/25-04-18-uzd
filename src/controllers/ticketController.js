@@ -48,9 +48,6 @@ const getSingleTicket = async (req, res) => {
 const createTicket = async (req, res) => {
     const { title, description, status } = req.body;
 
-    console.log(title, description, status);
-    console.log(req?.user?.id);
-
     try {
         const ticket = await prisma.ticket.create({
             data: {
